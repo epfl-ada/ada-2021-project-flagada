@@ -18,7 +18,7 @@ We first start with a sanity check to remove all data rows with an unreadable da
 
 ## Organization within the team
 
-    |  Cyril | Nicolas  | Adrien  | Charles  |
+| |  Cyril | Nicolas  | Adrien  | Charles  |
 |---|---|---|---|---|
 |   |   |   |   |   |
 |   |   |   |   |   |
