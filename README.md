@@ -20,6 +20,8 @@ We first start with a sanity check to remove all data rows with an unreadable da
 
 | |  Cyril | Nicolas  | Adrien  | Charles  |
 |---|---|---|---|---|
-|   |   |   |   |   |
+| Week 9  |   |   |   |   |
+| Week 10  |   |   |   |   |
+|  Week 11 |   |   |   |   |
 |   |   |   |   |   |
 |   |   |   |   |   |
