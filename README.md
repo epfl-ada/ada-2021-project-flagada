@@ -23,5 +23,5 @@ We first start with a sanity check to remove all data rows with an unreadable da
 | Week 9  |   |   |   |   |
 | Week 10  |   |   |   |   |
 |  Week 11 |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+|  Week 12 |   |   |   |   |
+| Week 13  |   |   |   |   |
