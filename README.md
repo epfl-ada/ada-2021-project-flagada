@@ -6,7 +6,7 @@ The media have important influence over our daily lives. Even until recently, th
 
 ## Research questions
 
-Can we find significant variations on the nature of quotes according to the day of the week ? Is it in adequation with recent studies on psychology ? Does religion play a role with its religious days such as Shabat ? SOME CAN BE ADDED
+Can we find significant variations on the nature of quotes according to the day of the week ? Is it in adequation with recent studies on psychology ? Does religion play a role with its religious days such as Sunday or Shabat (saturday) ? SOME CAN BE ADDED
 
 ## Methods
 
