@@ -1,4 +1,4 @@
-# Which events have pushed the climate change debate forward ?
+# ADA Project 
 
 ## Abstract 
 
@@ -7,7 +7,7 @@ Climate change has became a real threat in the last decades. At the same time, p
 
 ## Research questions
 
-Our first question would be to study the impact of climate related events on the number of quotes about climate change. How much does a speech of Donald Trump on fossil fuels stimulate the number of quotes related to the environment? This would be an example of questions that can be answered by such an analysis. We can then classify these type of events and study which ones have the biggest impacts on the public press. 
+Our first question would be to study the impact of climate related events on the number of quotes about climate change. How much does a speech of Donald Trump on fossil fuels stimulate the number of quotes related to the environment? This would be an example of questions that can be answered by such an analysis. We can then classify these types of events and study which ones have the biggest impacts on the public press. We will also organize the quotes with lexical field to see 
 
 ## Methods
 
