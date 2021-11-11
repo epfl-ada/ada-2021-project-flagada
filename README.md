@@ -1,4 +1,4 @@
-# ADA Project 
+# Which events have pushed the climate change debate forward ?
 
 ## Abstract 
 
