@@ -12,8 +12,11 @@ Our first question would be to study the impact of climate related events on the
 ## Methods
 
 We first start with a sanity check to remove all data rows with an unreadable date. Then we add a column to the data set containing the day of the week. Then we set up a list of keywords allowing to distinguish quotes from one another. 
+
 The next task we need to tackle is to extract quotes that are related to climate change. The method that seemed to work the best while testing was Zero-Shot Text Classification with Hugging Face. On Python this can be done using the `transformers` library with the `pipeline("zero-shot-classification")` classifier (a pre-trained model). This allows us to filter quotes that are not related to climate change (using a set of climate related words) and to label the remaining quotes with a "candidate label", like "renewable", "fossil fuels", "temperature"...
+
 We will also expand the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians (for this part we might have to reduce our scope to only the US, as it will simplify the identification of political views). During our testing we also performed sentiment analysis, using a pre-trained model shipped with `nltk`, this might become useful to answer questions about how different people adress the climate issue.
+
 Once we have constructed this dataset and added the classification labels to it, we will want to visualize the frequency of quotes regarding the subject and see if any peaks are detectable. One of the main goals of this project is to create a baseline trend for the increase of climate discussions and to identify the outliers to try and link them to particular events in recent history.
 
 ## Proposed timeline
