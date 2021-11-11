@@ -16,9 +16,9 @@ Our first question would be to study the impact of climate related events on the
 
 ## Methods
 
-We first start with a sanity check to remove all data rows with an unreadable date. Then we add a column to the data set containing the day of the week. Then we set up a list of keywords allowing to distinguish quotes from one another. 
+We first start with a sanity check to remove all data rows with an unreadable date. Then we add a column to the data set containing the day of the week. 
 
-The next task we need to tackle is to extract quotes that are related to climate change. The method that seemed to work the best while testing was Zero-Shot Text Classification with Hugging Face. On Python this can be done using the `transformers` library with the `pipeline("zero-shot-classification")` classifier (a pre-trained model). This allows us to filter quotes that are not related to climate change (using a set of climate related words) and to label the remaining quotes with a "candidate label", like "renewable", "fossil fuels", "temperature"...
+The next task we need to tackle is to extract quotes that are related to climate change. For this we established a list of words related to this subject and filtered out the quotes that didn't contain any of those words. This method seems sufficient during our testing and was much more efficient than using a pre-trained classifier.
 
 We will also expand the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians (for this part we might have to reduce our scope to only the US, as it will simplify the identification of political views). During our testing we also performed sentiment analysis, using a pre-trained model shipped with `nltk`, this might become useful to answer questions about how different people adress the climate issue.
 
