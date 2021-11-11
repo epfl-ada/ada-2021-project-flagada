@@ -22,7 +22,7 @@ The next task we need to tackle is to extract quotes that are related to climate
 
 We will also expand the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians (for this part we might have to reduce our scope to only the US, as it will simplify the identification of political views). During our testing we also performed sentiment analysis, using a pre-trained model shipped with `nltk`, this might become useful to answer questions about how different people adress the climate issue.
 
-Once we have constructed this dataset and added the classification labels to it, we will want to visualize the frequency of quotes regarding the subject and see if any peaks are detectable. One of the main goals of this project is to create a baseline trend for the increase of climate discussions and to identify the outliers to try and link them to particular events in recent history.
+Once we have constructed this dataset, we will want to visualize the frequency of quotes regarding the subject and see if any peaks are detectable. One of the main goals of this project is to create a baseline trend for the increase of climate discussions and to identify the outliers to try and link them to particular events in recent history. To be able to detect which event corresponds to a particular set of quotes, we also study the most common words cited using `nltk`, by first removing stopwords, punctuation and also words we used to identify quotes related to climate change.
 
 ## Proposed timeline
 
