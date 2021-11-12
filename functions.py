@@ -98,22 +98,11 @@ def retrieve_day(Date):
 
     weekday = datetime.isoweekday(date) # Obtain the weekday from 1 (monday) to 7 (sunday)
 
-    # There are no switch/case statement in Python <= 3.10...
-    if (weekday == 1):
-        return 'Monday'
-    elif (weekday == 2):
-        return 'Tuesday'
-    elif (weekday == 3):
-        return 'Wednesday'
-    elif (weekday == 4):
-        return 'Thursday'
-    elif (weekday == 5):
-        return 'Friday'
-    elif (weekday == 6):
-        return 'Saturday'
-    else:
-        return 'Sunday'
-
+    #
+    for i in range(7) :
+        if (weekday == i+1) :
+            return weekdays[i]
+        
 
 
 def filter_df_by_keywords(df, searchfor):
@@ -131,8 +120,8 @@ def weekdays_stats(df):
         no_zero_mean = np.mean([a for a in df.loc[df['day'] == d]['sentiment'].apply(lambda x: x.get('compound')) if a != 0])
         print("Proportion of positives: ", positives/total)
         print("Proportion of negatives: ", negatives/total) 
-        print(all_mean)
-        print(no_zero_mean)
+        print("Mean of the compounds :", all_mean)
+        print("Mean of the compounds without the neutral results :", no_zero_mean)
 
 
 
@@ -174,7 +163,6 @@ def save_lexic(filein, fileout, lexic):
                 instance = json.loads(instance) # loading a sample
                 if(find_word(instance['quotation'], lexic)):
                     d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
-
 
 
 
@@ -227,8 +215,10 @@ def save_df_with_sentiment(filename):
 
 def weekdays_sent_plot(df):
     for d in weekdays:
-        print(d, ':')
         sns.histplot([a for a in df.loc[df['day'] == d]['sentiment'].apply(lambda x: x.get('compound')) if a != 0])
+        plt.title(d)
+        plt.xlabel('Sentimental score')
+        plt.ylabel('Number of quotes')
         plt.show()
 
 
