@@ -8,7 +8,7 @@ Climate change has became a real threat in the last decades. At the same time, p
 ## Research questions
 
 * Can the number of quotes about climate change be linked to particular events ?
-* Can these events be identified using the nationnality of the speakers and the most common words cited ?
+* Can we identify the nature of the event according to the content of the quotes on a given day?
 * What kind of event is the most impactful ? (natural event, political summit, social gathering...)
 * How different political parties handle these events (using sentiment analysis)
 
