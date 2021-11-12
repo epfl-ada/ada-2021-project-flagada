@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 import bz2
 import json
+import re
 from tqdm.notebook import tqdm
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -13,6 +14,70 @@ nltk.download('vader_lexicon')
 analyzer = SentimentIntensityAnalyzer()
 
 weekdays=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+
+################################################## LINK QIDS ##########################################################
+
+def qid_to_label(QID, labels):
+    """ Return the label corresponding to the QID. Labels should be a dataframe loaded as :
+    labels = pd.read_csv('wikidata_labels_descriptions_quotebank.csv.bz2', compression='bz2', index_col='QID')
+    """
+    try:
+        label = labels.loc[QID]['Label']
+    except:
+        raise ValueError('The QID \'' + QID + '\' does not appear in the repertoire labels') from None
+
+    return label
+
+
+def speaker_to_attributes(QID, attributes):
+    """ Return the (interesting for us) attributes corresponding to the QID of a speaker. Attributes should
+     be a dataframe loaded as :
+    attributes = pd.read_parquet('speaker_attributes.parquet')
+    """
+    line = attributes[attributes.id == QID]
+    if (len(line) == 0):
+        raise ValueError('The QID \'' + QID + '\' does not appear in the repertoire attributes') from None
+    
+    return line[['date_of_birth', 'nationality', 'gender', 'ethnic_group', 'occupation', 'party', 'religion']].to_dict(
+        orient='records')[0]
+
+
+def speaker_to_labels(QID, attributes, labels):
+    """ Return the (interesting for us) attributes corresponding to the QID of a speaker, 
+    readable by a human (not with QIDS). Attributes and labels should be dataframes loaded as :
+    attributes = pd.read_parquet('speaker_attributes.parquet')
+    labels = pd.read_csv('wikidata_labels_descriptions_quotebank.csv.bz2', compression='bz2', index_col='QID')
+    """
+    dic = speaker_to_attributes(QID, attributes)
+    keys = ['nationality', 'gender', 'ethnic_group', 'occupation', 'party', 'religion']
+    if (dic['date_of_birth'] is not None):
+        dic['date_of_birth'] = dic['date_of_birth'][0]  # Reduce from list of 1 string to string
+    for key in keys:
+        if (dic[key] is not None):
+            if (len(dic[key]) == 1):
+                dic[key] = qid_to_label(dic[key][0], labels) # Reduce from list of 1 object to object
+            else:
+                new_value = []
+                for q in dic[key]:
+                    new_value.append(qid_to_label(q, labels))
+                dic[key] = new_value
+            
+    return dic
+
+
+################################################# UTILITIES ##########################################################
+
+def find_word(quote, lexic):
+    """ Finds if any of the words in lexic are present in string quote 
+        This looks for both uppercase and lower case character, and characters such as .,(! etc...
+        Example : find_word('Charles is so HOT.', ['hot', 'temperature']) --> True
+                  find_word('The coalition', ['coal']) --> False (it does not count as true appearance in another word)
+        """
+    for word in lexic:
+        if(re.search(rf'\b{word}\b', quote, flags=re.IGNORECASE)):
+            return True
+    return False
 
 
 # From previous idea
@@ -49,14 +114,12 @@ def retrieve_day(Date):
     else:
         return 'Sunday'
 
-def save_df_with_day(filename):
-    with bz2.open(filename, 'rb') as s_file:
-        with bz2.open(f'day_{filename}', 'wb') as d_file:
-            for instance in tqdm(s_file):
-                instance = json.loads(instance) # loading a sample
-                day = retrieve_day(instance['date'])
-                instance['day'] = day
-                d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
+
+
+def filter_df_by_keywords(df, searchfor):
+    return df.loc[df['speaker'] != 'None'][df['quotation'].str.contains('|'.join(searchfor))]
+
+
 
 def weekdays_stats(df):
     for d in weekdays:
@@ -71,13 +134,8 @@ def weekdays_stats(df):
         print(all_mean)
         print(no_zero_mean)
 
-def weekdays_sent_plot(df):
-    for d in weekdays:
-        print(d, ':')
-        sns.histplot([a for a in df.loc[df['day'] == d]['sentiment'].apply(lambda x: x.get('compound')) if a != 0])
-        plt.show()
 
-# Utils
+
 def create_frame(filename, N):
     """ Creates a DataFrame with the N first rows of the file with filename 
         It is useful to load small portions and test things.            """
@@ -91,6 +149,65 @@ def create_frame(filename, N):
         
     return pd.DataFrame(list_of_dicts)
 
+
+############################################# TO CREATE DATASETS ######################################################
+
+def save_df_with_day(filein, fileout):
+    with bz2.open(filein, 'rb') as s_file:
+        with bz2.open(fileout, 'wb') as d_file:
+            for instance in tqdm(s_file):
+                instance = json.loads(instance) # loading a sample
+                day = retrieve_day(instance['date'])
+                instance['day'] = day
+                d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
+
+
+def save_lexic(filein, fileout, lexic):
+    """ Save the lexic (climate) related quotes of filein into fileout
+        lexic is a list of words
+        example : lexic = ['climate change', 'climate emergency', 'global warming', 'COP21', 'COP26']
+    """
+    with bz2.open(filein, 'rb') as s_file:
+        with bz2.open(fileout, 'wb') as d_file:
+            for instance in tqdm(s_file):
+                instance = json.loads(instance) # loading a sample
+                if(find_word(instance['quotation'], lexic)):
+                    d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
+
+
+
+
+def save_lexic_with_attributes(filein, fileout, lexic, attributes, labels):
+    """ Save the lexic (climate) related quotes of filein into fileout, linking qids of known speaker to their 
+        attributes (if the speaker has only 1 qid, otherwise we cannot know which one to take)
+        lexic is a list of words (e.g lexic = ['climate change', 'climate emergency'])
+        atrributes and labels are dataframe loaded as :
+        attributes = pd.read_parquet('speaker_attributes.parquet')
+        labels = pd.read_csv('wikidata_labels_descriptions_quotebank.csv.bz2', compression='bz2', index_col='QID')
+    """
+
+    keys = ['date_of_birth', 'nationality', 'gender', 'ethnic_group', 'occupation', 'party', 'religion']
+
+    with bz2.open(filein, 'rb') as s_file:
+        with bz2.open(fileout, 'wb') as d_file:
+            for instance in tqdm(s_file):
+                instance = json.loads(instance) # loading a sample
+                if(find_word(instance['quotation'], lexic)):
+                    if (len(instance['qids']) == 1):
+                        try:
+                            dic = speaker_to_labels(instance['qids'][0], attributes, labels)
+                            for key in dic.keys():
+                                instance[key] = dic[key]
+                        except:
+                            pass
+                    else:
+                        for key in keys:
+                            instance[key] = None
+                d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
+
+
+
+
 def save_df_with_sentiment(filename):
     with bz2.open(filename, 'rb') as s_file:
         with bz2.open(f'sentiment_{filename}', 'wb') as d_file:
@@ -100,8 +217,15 @@ def save_df_with_sentiment(filename):
                 instance['sentiment'] = sentiment
                 d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
 
-def filter_df_by_keywords(df, searchfor):
-    return df.loc[df['speaker'] != 'None'][df['quotation'].str.contains('|'.join(searchfor))]
+
+################################################# PLOTS ###############################################################
+
+
+def weekdays_sent_plot(df):
+    for d in weekdays:
+        print(d, ':')
+        sns.histplot([a for a in df.loc[df['day'] == d]['sentiment'].apply(lambda x: x.get('compound')) if a != 0])
+        plt.show()
 
 
 # Plots
