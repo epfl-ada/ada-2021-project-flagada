@@ -26,7 +26,7 @@ Once we have constructed this dataset, we will want to visualize the frequency o
 
 ![timeline](https://user-images.githubusercontent.com/9378265/141483454-d3a8cd20-4bd4-468f-b0b8-592ef4c423a6.png)
 
-* (N.B: the word count of this timeline is approximately 250 words.) *
+_(N.B: the word count of this timeline is approximately 250 words.)_
 
 ## Organization within the team
 
