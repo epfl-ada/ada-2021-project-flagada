@@ -3,7 +3,7 @@
 ## Abstract 
 
 
-Climate change has became a real threat in the last decades. At the same time, populations start to be aware of it and the climate debate is diffusing around the world. Here, with the Quotebank data set, it is possible to map the relation between the impacts of climate change and the public opinion. The last reports of the IPCC and the COP conferences might highlight a really step towards the environmental transition from the world leaders. This project aims to study how much the climate debate has inflated along the years. Using the Quotebank dataset, we can analyse how much climate change is dealt in the press, according to different factors. Comparing these factors can help understand what are the reasons people talk about these issues. Is it catastropheses, Greta Thunberg's speeches, political parties statements, street demonstrations...? Many reasons lead to these debates and this project can help people caring about the environment to understand how and when it takes over the public discussion.
+Climate change has became a real threat in the last decades. At the same time, populations start to be aware of it and the climate debate is diffusing around the world. Here, with the Quotebank data set, it is possible to map the relation between the impacts of climate change and the public opinion. Major events are the causes of the growth of this debate. Indeed, human nature leads us to be concerned either by events impact our personal lives, or by spectacular ones. As such, we seek to study the reaction of the media with respect to events and try to identify the nature of the event. In that way, we can better understand the human psychology regarding the climate threat 
 
 ## Research questions
 
