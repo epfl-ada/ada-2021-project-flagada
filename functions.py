@@ -102,15 +102,12 @@ def retrieve_day(Date):
     weekday = datetime.weekday(_date) # Obtain the weekday from 1 (monday) to 7 (sunday)
 
     return weekdays[weekday]
-        
-
-# Outdated --> use find_word instead
-def filter_df_by_keywords(df, searchfor):
-    return df.loc[df['speaker'] != 'None'][df['quotation'].str.contains('|'.join(searchfor))]
-
 
 
 def weekdays_stats(df):
+    """ Print simple statistics about the sentiment as a function of weekdays.
+        The input df needs to contain the day column.
+    """
     for d in weekdays:
         print(d, ':')
         positives = len([a for a in df.loc[df['day'] == d]['sentiment'].apply(lambda x: x.get('compound')) if a > 0])
@@ -178,6 +175,8 @@ def frequence_words_frame(frame, Date):
 ############################################# TO CREATE DATASETS ######################################################
 
 def save_df_with_day(filein, fileout):
+    """ Save a the dataset with the day column added
+    """
     with bz2.open(filein, 'rb') as s_file:
         with bz2.open(fileout, 'wb') as d_file:
             for instance in tqdm(s_file):
@@ -236,6 +235,8 @@ def save_lexic_with_attributes(filein, fileout, lexic, attributes, labels):
 
 
 def save_df_with_sentiment(filename):
+    """ Save a dataset with a column containing the results of the sentiment analysis performed on the quotation
+    """
     with bz2.open(filename, 'rb') as s_file:
         with bz2.open(f'sentiment_{filename}', 'wb') as d_file:
             for instance in tqdm(s_file):
@@ -249,6 +250,8 @@ def save_df_with_sentiment(filename):
 
 
 def weekdays_sent_plot(df):
+    """ Plots the histogram of the sentiment as a function of weekdays
+    """
     for d in weekdays:
         sns.histplot([a for a in df.loc[df['day'] == d]['sentiment'].apply(lambda x: x.get('compound')) if a != 0])
         plt.title(d)
@@ -259,5 +262,7 @@ def weekdays_sent_plot(df):
 
 # Plots
 def plot_sentiment(df):
+    """ Plots the compound value of the sentiment
+    """
     sns.histplot(df['sentiment'].apply(lambda x: x.get('compound')))
     plt.show()
