@@ -1,15 +1,15 @@
-import pandas as pd
-from datetime import datetime
-from datetime import date
 import bz2
 import json
 import re
-from tqdm.notebook import tqdm
-import seaborn as sns
+from datetime import date, datetime
+
 import matplotlib.pyplot as plt
-import numpy as np
 import nltk
+import numpy as np
+import pandas as pd
+import seaborn as sns
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from tqdm.notebook import tqdm
 
 nltk.download('vader_lexicon')
 nltk.download('stopwords')
