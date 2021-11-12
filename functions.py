@@ -8,7 +8,9 @@ import nltk
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.tokenize import word_tokenize
 from tqdm.notebook import tqdm
 
 nltk.download('vader_lexicon')
@@ -159,6 +161,58 @@ def frequence_words(sentence):
 
     return frequency
 
+def capital_letter_keywords(quotes_2020, date_choice) :
+    quotation_test= quotes_2020[quotes_2020['date'].astype(str)== date_choice].quotation
+    flat_list = [sublist[i] for sublist in quotation_test.str.split() for i in range(len(sublist)) ]
+    total_quotation = " ".join(flat_list)
+    
+    stop_words = set(stopwords.words('english'))
+    stop_words.add('climate')
+    stop_words.add('Climate')
+    stop_words.add('change')
+    stop_words.add('warming')
+    stop_words.add('environmental')
+    stop_words.add('threat')
+    stop_words.add('emergency ')
+    stop_words.add('global')
+    stop_words.add('world')
+    word_tokens = word_tokenize(total_quotation)
+    filtered_sentence = [w for w in word_tokens if not w.lower() in stop_words]
+    filtered_sentence_join = " ".join(filtered_sentence)
+    filtered_sentence_df = pd.Series(filtered_sentence)
+    filtered_sentence_df = filtered_sentence_df[filtered_sentence_df.apply(lambda x : len(x)>3)]
+    count_capital_letter = pd.Series([ x for x in filtered_sentence if  x[0].isupper()]).value_counts()
+    count_capital_letter = count_capital_letter[count_capital_letter>(0.03*len(quotation_test))]
+    
+    return filtered_sentence_df, count_capital_letter
+
+
+def all_keywords(quotes_2020, date_choice) :
+    quotation_test= quotes_2020[quotes_2020['date'].astype(str)== date_choice].quotation
+    flat_list = [sublist[i] for sublist in quotation_test.str.split() for i in range(len(sublist)) ]
+    
+    
+    total_quotation = " ".join(flat_list)
+    
+    stop_words = set(stopwords.words('english'))
+    stop_words.add('climate')
+    stop_words.add('Climate')
+    stop_words.add('change')
+    stop_words.add('warming')
+    stop_words.add('environmental')
+    stop_words.add('threat')
+    stop_words.add('emergency ')
+    stop_words.add('global')
+    stop_words.add('world') 
+    word_tokens = word_tokenize(total_quotation)
+    filtered_sentence = [w for w in word_tokens if not w.lower() in stop_words]
+    filtered_sentence_join = " ".join(filtered_sentence)
+    filtered_sentence_df = pd.Series(filtered_sentence)
+    filtered_sentence_df = filtered_sentence_df[filtered_sentence_df.apply(lambda x : len(x)>3)]
+    count_words =filtered_sentence_df.value_counts()
+    count_words = count_words[count_words>(0.05*len(quotation_test))]
+    
+    return filtered_sentence_df, count_words
 
 
 def frequence_words_frame(frame, Date):
