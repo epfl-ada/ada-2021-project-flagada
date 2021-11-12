@@ -14,9 +14,7 @@ Climate change became a real threat in the last decades. Populations started to 
 
 ## Methods
 
-We first start with a sanity check to remove all data rows with an unreadable date. Then we add a column to the data set containing the day of the week. 
-
-The next task we need to tackle is to extract quotes that are related to climate change. For this we established a list of words related to this subject and filtered out the quotes that didn't contain any of those words. This method seems sufficient during our testing and was much more efficient than using a pre-trained classifier.
+The first task we need to tackle is to extract quotes that are related to climate change. For this we established a list of words related to this subject and filtered out the quotes that didn't contain any of those words. This method seems sufficient during our testing and was much more efficient than using a pre-trained classifier.
 
 We will also expand the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians (for this part we might have to reduce our scope to only the US, as it will simplify the identification of political views). During our testing we also performed sentiment analysis, using a pre-trained model shipped with `nltk`, this might become useful to answer questions about how different people adress the climate issue.
 
