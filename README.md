@@ -26,7 +26,8 @@ Once we have constructed this dataset, we will want to visualize the frequency o
 
 ## Proposed timeline
 
-![timeline](https://user-images.githubusercontent.com/9378265/141479181-3b203df9-1478-4135-8d04-185e64a2c5a0.png)
+![timeline](https://user-images.githubusercontent.com/9378265/141483454-d3a8cd20-4bd4-468f-b0b8-592ef4c423a6.png)
+
 
 ## Organization within the team
 
