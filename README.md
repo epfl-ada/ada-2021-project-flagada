@@ -33,8 +33,8 @@ Once we have constructed this dataset, we will want to visualize the frequency o
 
 | |  Cyril | Nicolas  | Adrien  | Charles  |
 |---|---|---|---|---|
-| Week 9  |   |   |   |   |
-| Week 10  |   |   |   |   |
-|  Week 11 |   |   |   |   |
-|  Week 12 |   |   |   |   |
-| Week 13  |   |   |   |   |
+| Week 9  | 1 | 1 | 1 | 1 |
+| Week 10  | 2 | 3 | 3 | 3 |
+|  Week 11 | 5 | 4 | 5 | 4 |
+|  Week 12 | 7 | 6 | 6 | 7 |
+| Week 13  |7/8| 8 | 8 |7/8|
