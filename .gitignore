@@ -2,3 +2,7 @@
 *.parquet
 .DS_Store
 __pycache__
+charles.ipynb
+cyril.ipynb
+nico.ipynb
+adrien.ipynb
