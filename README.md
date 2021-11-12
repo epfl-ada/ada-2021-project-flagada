@@ -3,7 +3,7 @@
 ## Abstract 
 
 
-Climate change has became a real threat in the last decades. At the same time, populations start to be aware of it and the climate debate is diffusing around the world. Here, with the Quotebank dataset, it is possible to map the relation between the impacts of climate change and the public opinion. Major events are the causes of the growth of this debate. Indeed, human nature leads us to be concerned either by events impact our personal lives, or by spectacular ones. As such, we seek to study the reaction of the media with respect to events and try to identify their nature. In that way, we can better understand the human psychology regarding the climate threat and how the reactions evolved along the years. To do so, we look for the highest number of occurences of climate change mentionning and use the evoked keywords to determine what as talked about.
+Climate change has became a real threat in the last decades. At the same time, populations started to be aware of it and the climate debate diffused around the world. With the Quotebank dataset, it is possible to map the relation between the impacts of climate change and public opinion. Major events seem to inflate this debate. Indeed, human nature leads us to be concerned either by events impacting our personal lives, or by spectacular ones. As such, we seek to study the reaction of the media with respect to events and try to identify their nature. In that way, we can better understand the human psychology regarding the climate threat and how the reactions evolved along the years. To do so, we look for the highest number of occurences of climate change mentions and use the evoked keywords to determine if it corresponds to a particular event.
 
 ## Research questions
 
