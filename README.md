@@ -1,4 +1,4 @@
-# Which events have pushed the climate change debate forward in recent history ?
+# Which events have pushed the climate debate forward in recent history ?
 
 ## Abstract 
 
