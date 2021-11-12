@@ -162,6 +162,8 @@ def frequence_words(sentence):
     return frequency
 
 def capital_letter_keywords(quotes_2020, date_choice) :
+    """ Finds most frequent keywords for a given date, starting with a capital letter
+    """
     quotation_test= quotes_2020[quotes_2020['date'].astype(str)== date_choice].quotation
     flat_list = [sublist[i] for sublist in quotation_test.str.split() for i in range(len(sublist)) ]
     total_quotation = " ".join(flat_list)
@@ -188,9 +190,10 @@ def capital_letter_keywords(quotes_2020, date_choice) :
 
 
 def all_keywords(quotes_2020, date_choice) :
+    """ Finds most frequent keywords for a given date
+    """
     quotation_test= quotes_2020[quotes_2020['date'].astype(str)== date_choice].quotation
     flat_list = [sublist[i] for sublist in quotation_test.str.split() for i in range(len(sublist)) ]
-    
     
     total_quotation = " ".join(flat_list)
     
