@@ -1,4 +1,4 @@
-# Which events have pushed the climate change debate forward in recent history ?
+# Which events have pushed the climate debate forward in recent history ?
 
 ## Abstract 
 
@@ -25,15 +25,8 @@ We will also expand the dataset to add information about the speakers (using Wik
 Once we have constructed this dataset, we will want to visualize the frequency of quotes regarding the subject and see if any peaks are detectable. One of the main goals of this project is to create a baseline trend for the increase of climate discussions and to identify the outliers to try and link them to particular events in recent history. To be able to detect which event corresponds to a particular set of quotes, we also study the most common words cited using `nltk`, by first removing stopwords, punctuation and also words we used to identify quotes related to climate change.
 
 ## Proposed timeline
-Different goals :
-* Write all functions to extract data from the speakers
-* Perfect the list of words for identifying climate change
-* Process all the dataset and merge the different years
-* Visualize the results
-* Identify the outliers
-* Create a baseline
-* Using the identified outliers, perform text analysis to find the event it corresponds to
 
+![timeline](https://user-images.githubusercontent.com/9378265/141479181-3b203df9-1478-4135-8d04-185e64a2c5a0.png)
 
 ## Organization within the team
 
