@@ -181,6 +181,9 @@ def save_lexic(filein, fileout, lexic):
 def save_lexic_with_attributes(filein, fileout, lexic, attributes, labels):
     """ Save the lexic (climate) related quotes of filein into fileout, linking qids of known speaker to their 
         attributes (if the speaker has only 1 qid, otherwise we cannot know which one to take)
+        ATTENTION : it is inefficient (but works) since for each quote related to climate, the code will need to scan 
+                    in the entire attributes frame (which is large) for a matching QID
+
         lexic is a list of words (e.g lexic = ['climate change', 'climate emergency'])
         atrributes and labels are dataframe loaded as :
         attributes = pd.read_parquet('speaker_attributes.parquet')
