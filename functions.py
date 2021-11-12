@@ -1,5 +1,6 @@
 import pandas as pd
 from datetime import datetime
+from datetime import date
 import bz2
 import json
 import re
@@ -89,14 +90,14 @@ def retrieve_day(Date):
         """
 
     try:                        
-        date = datetime.strptime(Date, '%Y-%m-%d %H:%M:%S') # Convert to a datetime object and check that the format is correct and the numbers are valid
+        _date = datetime.strptime(Date, '%Y-%m-%d %H:%M:%S') # Convert to a datetime object and check that the format is correct and the numbers are valid
     except ValueError:
         raise ValueError('The string \'' + Date + '\' does not match the format \'YYYY-MM-DD hh:mm:ss\'') from None # Customize the error message
 
-    if (date.year not in [2015, 2016, 2017, 2018, 2019, 2020]): # Check that the year is in the correct interval and that we do not have wrong data
-        raise ValueError(f'The year {date.year} that you provided is not between 2015 and 2020 (inclusive).')
+    if (_date.year not in [2015, 2016, 2017, 2018, 2019, 2020]): # Check that the year is in the correct interval and that we do not have wrong data
+        raise ValueError(f'The year {_date.year} that you provided is not between 2015 and 2020 (inclusive).')
 
-    weekday = datetime.isoweekday(date) # Obtain the weekday from 1 (monday) to 7 (sunday)
+    weekday = datetime.isoweekday(_date) # Obtain the weekday from 1 (monday) to 7 (sunday)
 
     #
     for i in range(7) :
@@ -138,6 +139,41 @@ def create_frame(filename, N):
             list_of_dicts.append(instance)
         
     return pd.DataFrame(list_of_dicts)
+
+
+
+def frequence_words(sentence):
+    """ Finds the frequency of appearance of all (important) words in the sentence
+    """
+    stop_words = nltk.corpus.stopwords.words('english')
+    stop_words.append('climate')
+    stop_words.append('change')
+    stop_words.append('warming')
+    stop_words.append('global')
+    tokenizer = nltk.RegexpTokenizer(r"\w+") # To remove punctuation
+    tokens = tokenizer.tokenize(sentence)
+    tokens = [word.lower() for word in tokens] # Put everything to lowercase
+    filtered_sentence = [word for word in tokens if (word not in stop_words)]  # Remove stop words
+    filtered_sentence = [word for word in filtered_sentence if (word.isdecimal())] # Remove full numeric words (e.g '2015')
+
+    words, count = np.unique(filtered_sentence, return_counts=True)
+    frequency = {}
+    for i, word in enumerate(words):
+        frequency[word] = count[i]
+
+    return frequency
+
+
+
+def frequence_words_frame(frame, Date):
+    """ Finds the frequency of all the words present in the dataframe for a certain date.
+    
+        Date must be a date object (e.g Date = date.fromisoformat('2015-04-12'))
+    """
+    quotes = frame[frame['date'].dt.date == Date].quotation.to_list()
+    total = ' '.join(quotes)
+
+    return frequence_words(total)
 
 
 ############################################# TO CREATE DATASETS ######################################################
