@@ -99,15 +99,12 @@ def retrieve_day(Date):
     if (_date.year not in [2015, 2016, 2017, 2018, 2019, 2020]): # Check that the year is in the correct interval and that we do not have wrong data
         raise ValueError(f'The year {_date.year} that you provided is not between 2015 and 2020 (inclusive).')
 
-    weekday = datetime.isoweekday(_date) # Obtain the weekday from 1 (monday) to 7 (sunday)
+    weekday = datetime.weekday(_date) # Obtain the weekday from 1 (monday) to 7 (sunday)
 
-    #
-    for i in range(7) :
-        if (weekday == i+1) :
-            return weekdays[i]
+    return weekdays[weekday]
         
 
-
+# Outdated --> use find_word instead
 def filter_df_by_keywords(df, searchfor):
     return df.loc[df['speaker'] != 'None'][df['quotation'].str.contains('|'.join(searchfor))]
 
@@ -156,7 +153,7 @@ def frequence_words(sentence):
     tokens = tokenizer.tokenize(sentence)
     tokens = [word.lower() for word in tokens] # Put everything to lowercase
     filtered_sentence = [word for word in tokens if (word not in stop_words)]  # Remove stop words
-    filtered_sentence = [word for word in filtered_sentence if (word.isdecimal())] # Remove full numeric words (e.g '2015')
+    filtered_sentence = [word for word in filtered_sentence if (not word.isdecimal())] # Remove full numeric words (e.g '2015')
 
     words, count = np.unique(filtered_sentence, return_counts=True)
     frequency = {}
