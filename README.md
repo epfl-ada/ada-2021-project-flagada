@@ -39,22 +39,22 @@ Once we have constructed this dataset, we will want to visualize the frequency o
 
 ## Structure of the files
 
-### `functions.py`
+* #### `functions.py`
 
 In this Python file, we aggregated most of our functions in order to visually clarify our notebook files.
 
-### `requirements.txt`
+* #### `requirements.txt`
 
-This files summaries all of the necessary libraries with their versions.
+This files summaries all of the necessary libraries with their respective versions.
 
-### `weekdays.ipynb`
+* #### `weekdays.ipynb`
 
 First, we had an initial idea to study the sentiment of the quotes according to the days of the week. However, after some analyses on the data, in `weekdays.ipynb`, we quickly realised it was not the most interesting subject. However, these preliminary manipulations on the dataset allowed us to better understand its structure and size. We thus decided to keep it and explain our reasoning. In this context, we expanded the original dataset with a column stating the day related to the date of the row. We kept using these new data files for the rest even though it is not useful for climate change analysis.
 
-### `playground.ipynb`
+* #### `playground.ipynb`
 
 This notebook purpose is to sort the data according to our final topic : the impact of climate change events on the press releases. Indeed, we only kept quotes related to the environment using keywords and we made primary experiments with the data.
 
-### `proof_of_concept.ipynb`
+* #### `proof_of_concept.ipynb`
 
-This file is the heart of this milestone. It gives the main statistical manipulations on the data and provides an initial study on the 2020 dataset. Within it, we manage to identify the nature of a climate related event in january just by look at the frequency of keywords in the quotes (fire, wildfire, Australia,...).
+This file is the heart of this milestone. It gives the main statistical manipulations on the data and provides an initial study on the 2020 dataset. Within it, we manage to identify the nature of a climate related event in january just by looking at the frequency of keywords in the quotes (fire, wildfire, Australia,...).
