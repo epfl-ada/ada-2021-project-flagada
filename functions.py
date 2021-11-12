@@ -137,8 +137,9 @@ def weekdays_stats(df):
 
 
 def create_frame(filename, N):
-    """ Creates a DataFrame with the N first rows of the file with filename 
-        It is useful to load small portions and test things.            """
+    """ Creates a DataFrame with the N first rows of the file with filename (being a json.bz2 file)
+        It is useful to load small portions and test things. 
+    """
     list_of_dicts = []
     with bz2.open(filename, 'rb') as s_file:
         for i, instance in enumerate(s_file):
