@@ -22,13 +22,13 @@ Once we have constructed this dataset, we will want to visualize the frequency o
 
 We could try in the future in our datastory blog to incorporate interactiveness to the data. This would be done by allowing the viewer to "click" on peakdays, discover by themselves the most mentioned words and deduce what would be the event.
 
-## Proposed timeline
+## Timeline
 
 ![timeline](https://user-images.githubusercontent.com/9378265/141483454-d3a8cd20-4bd4-468f-b0b8-592ef4c423a6.png)
 
 _(N.B: the wordcount of this timeline is approximately 250 words.)_
 
-## Organization within the team
+## Team Organization
 
 | |  Cyril | Nicolas  | Adrien  | Charles  |
 |---|---|---|---|---|
@@ -38,7 +38,7 @@ _(N.B: the wordcount of this timeline is approximately 250 words.)_
 |  Week 12 | 7 | 6 | 6 | 7 |
 | Week 13  |7/8| 8 | 8 |7/8|
 
-## Structure of the files
+## Structure of files
 
 * #### `functions.py`
 
