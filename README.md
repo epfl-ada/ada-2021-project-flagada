@@ -59,21 +59,3 @@ This notebook purpose is to sort the data according to our final topic : the imp
 * #### `proof_of_concept.ipynb`
 
 This file is the heart of this milestone. It gives the main statistical manipulations on the data and provides an initial study on the 2020 dataset. Within it, we manage to identify the nature of a climate related event in january just by looking at the frequency of keywords in the quotes (fire, wildfire, Australia,...). A validity check is also proceeded.
-
-## Feedback
-
-I understand that this project changed directions, that being said, I still found the overall proposal a bit vague. I strongly recommend that you all ponder about your research questions in the context of the data you have: quotes.
- 
- ### Research Question
- 
- My main concern with the research questions for this project is that they are about events, not about quotes. Quotes can be a good proxy for events in the news, but they are not exactly the same thing, this should be very clear when discussing the research questions.
- 
- Another minor concern is that no reason on why these specific questions are important are provided. I understand that climate change is a hot topic (no pun intended), but it is always important to be very clear on the reason why this specific analysis (about quotes on climate change) is important.
- 
- I don’t see a very straightforward reason to try to detect climate change events from quotes. Why does this matter?
- 
- Another issue here is that the questions cannibalize each other. If you develop a methodology (which as any methodology will be noisy) to detect events related to climate change, how much can you say about which kinds of events are impactful? Maybe you will just find out events that YOU recognized as impactful.
- 
- ### Methods and Pipeline
- 
- Overall, the description of the methods and the pipeline didn’t convince me of the feasibility of a project around a clear, well defined set of questions.
