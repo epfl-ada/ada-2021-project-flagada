@@ -286,7 +286,7 @@ def save_lexic_with_attributes(filein, fileout, lexic, attributes, labels):
                     else:
                         for key in keys:
                             instance[key] = None
-                d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
+                    d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
 
 
 
