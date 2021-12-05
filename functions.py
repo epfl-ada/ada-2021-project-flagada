@@ -58,6 +58,8 @@ def speaker_to_labels(QID, attributes, labels):
     keys = ['nationality', 'gender', 'ethnic_group', 'occupation', 'party', 'religion']
     if (dic['date_of_birth'] is not None):
         dic['date_of_birth'] = dic['date_of_birth'][0]  # Reduce from list of 1 string to string
+    else:
+        dic['date_of_birth'] = 'None'
     for key in keys:
         if (dic[key] is not None):
             if (len(dic[key]) == 1):
@@ -67,6 +69,8 @@ def speaker_to_labels(QID, attributes, labels):
                 for q in dic[key]:
                     new_value.append(qid_to_label(q, labels))
                 dic[key] = new_value
+        else:
+            dic[key] = 'None'
             
     return dic
 
@@ -285,9 +289,22 @@ def save_lexic_with_attributes(filein, fileout, lexic, attributes, labels):
                             pass
                     else:
                         for key in keys:
-                            instance[key] = None
+                            instance[key] = 'None'
                     d_file.write((json.dumps(instance)+'\n').encode('utf-8')) # writing in the new file
 
+
+def save_all_years(directory):
+    """ Save the quotes from all years in one single file from the files of each years"""
+
+    fileout = directory + 'quotes-all-years.json.bz2'
+    years = [2015, 2016, 2017, 2018, 2019, 2020]
+    with bz2.open(fileout, 'wb') as d_file:
+        for year in tqdm(years):
+            filein = directory + f'quotes-{year}.json.bz2' 
+            with bz2.open(filein, 'rb') as s_file:
+                for instance in s_file:
+                    instance = json.loads(instance) # loading a sample
+                    d_file.write((json.dumps(instance)+'\n').encode('utf-8'))
 
 
 
