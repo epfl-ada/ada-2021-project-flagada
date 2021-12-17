@@ -1,26 +1,23 @@
-# Which events have pushed the climate debate forward in recent history ?
+# Is the climate debate unequal ?
 
 ## Abstract 
 
-
-Climate change became a real threat in the last decades. With the Quotebank dataset, it is possible to map the relation between its impacts and public opinion. Major events are inflating this debate. Indeed, human nature leads us to be concerned either by events impacting our personal lives, or by spectacular ones. As such, we seek to study the reaction of media with respect to events and try to identify their nature. In that way, we can better understand the human psychology regarding the climate threat and how the reactions evolved along the years. To do so, we look for the highest number of occurences of climate change mentions and use the evoked keywords to determine if it corresponds to a particular event. As such, the data allows us to deduce the evolution of the role of the environment in the media.
+It is no surprise to anyone reading this that climate change has been a topic of polarizing discussion for the last few years. Indeed, it becomes more and more apparent in the signs from nature (floods, heatwaves and so on) that something is happening and our societies are reacting. Consequently, measures are taken by decision makers about how to mitigate it. Scientists are getting interviewed, politicians give speeches and all of this is delivered by the media. Such influence can be studied through the analysis of who and what they quote in their articles. The Quotebank dataset offers such a possibility, thanks to its 178M quotes from which climate change related quotes can be filtered. In this sense, the goal of this study is to better understand how the climate change debate has been evolving with a focus on a few events that were pillars in the discussion.
 
 ## Research questions
 
-* Can the number of quotes about climate change be linked to particular events only by using keywords?
-* Can we identify the nature of the event according to the content of the quotes on a given day?
-* What kind of event is the most impactful ?
-* Optional : How different political parties handle these events (using sentiment analysis)
+* Who is talking about climate change ?
+* Do we observe seasonality ?
+* What do these quotes tell us about politicians and climate ?
+* And what about natural events ?
 
 ## Methods
 
-The first task we need to tackle is to extract quotes that are related to climate change. For this we established a list of words related to this subject and filtered out the quotes that did not contain any of those words. This method seems sufficient during our testing and was much more efficient than using a pre-trained classifier.
+The first task we needed to tackle was to extract quotes that were related to climate change. For this we established a list of expressions related to this subject and filtered out the quotes that did not contain any of those expressions. This method seemed sufficient during our testing and was much more efficient than using a pre-trained classifier.
 
-We will also expand the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians (maybe focused on the USA for parties consistency). During our testing we also performed sentiment analysis, using a pre-trained model shipped with `nltk`, this might become useful to answer questions about how different people adress the climate issue.
+We also expanded the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians. In a similar fashion, we studied other attributes like gender, occupation or nationnality.  
 
-Once we have constructed this dataset, we will want to visualize the frequency of quotes regarding the subject and see if any peaks are detectable. To detect the peaks we will implement a method to find local maxima on different scales (weeks or days). One of the main goals of this project is to create a baseline trend for the increase of climate discussions and to identify the outliers to try and link them to particular events. To be able to detect which event corresponds to a particular set of quotes, we also study the most common words cited using `nltk`, by first removing stopwords, punctuation and also words we used to identify quotes related to climate. 
-
-We could try in the future in our datastory blog to incorporate interactiveness to the data. This would be done by allowing the viewer to "click" on peakdays, discover by themselves the most mentioned words and deduce what would be the event.
+We performed sentiment analysis aswell, using a pre-trained model shipped with `nltk`. This allowed us to study the sentiment our different events through the quotes.
 
 ## Timeline
 
@@ -48,14 +45,18 @@ In this Python file, we aggregated most of our functions in order to clarify our
 
 This files summaries all of the necessary libraries with their respective versions.
 
-* #### `weekdays.ipynb`
+* #### `plots.ipynb`
 
-First, we had an initial idea to study the sentiment of the quotes according to the days of week. However, after some analyses on the data, in `weekdays.ipynb`, we quickly realised it was not the most interesting subject. However, these preliminary manipulations on the dataset allowed us to understand its structure. We decided to keep it and explain our reasoning. In this context, we expanded the original dataset with a column stating the day related to the date of the row. We kept using these new data files for the rest even though it is not useful for climate change analysis.
+A notebook that contains all the functions needed to obtain the different plots
 
-* #### `playground.ipynb`
+* #### `map_and_occupation.ipynb`
 
-This notebook purpose is to sort the data according to our final topic : the impact of climate change events on the press releases. Indeed, we only kept quotes related to the environment using keywords and we made primary experiments with the data.
+As its name suggests, this notebook is used to obtain the map plot and also the occupation of the people quoted.
 
-* #### `proof_of_concept.ipynb`
+* #### `code_countries.txt`
 
-This file is the heart of this milestone. It gives the main statistical manipulations on the data and provides an initial study on the 2020 dataset. Within it, we manage to identify the nature of a climate related event in january just by looking at the frequency of keywords in the quotes (fire, wildfire, Australia,...). A validity check is also proceeded.
+Text file containing each country and its country code needed for the map plot.
+
+* #### `quote_frequency_day.json`
+
+File containing the frequency of climate quotes over all quotes for each day.
