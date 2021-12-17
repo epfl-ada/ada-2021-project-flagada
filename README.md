@@ -1,6 +1,6 @@
 # Is the climate debate unequal ?
 
-Check out our beautiful [data story](cyrilvallez.github.io/ADA) !
+Check out our beautiful [data story](https://cyrilvallez.github.io/ADA) !
 
 ## Abstract 
 
