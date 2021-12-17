@@ -51,6 +51,14 @@ This files summaries all of the necessary libraries with their respective versio
 
 A notebook that contains all the functions needed to obtain the different plots
 
-* ### `map_and_occupation.ipynb`
+* #### `map_and_occupation.ipynb`
 
 As its name suggests, this notebook is used to obtain the map plot and also the occupation of the people quoted.
+
+* #### `code_countries.txt`
+
+Text file containing each country and its country code needed for the map plot.
+
+* #### `quote_frequency_day.json`
+
+File containing the frequency of climate quotes over all quotes for each day.
