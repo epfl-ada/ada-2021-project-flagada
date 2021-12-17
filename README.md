@@ -1,4 +1,4 @@
-# Is the climate debate unequal ?
+# Is the climate debate going in the right direction ?
 
 Check out our beautiful [data story](https://cyrilvallez.github.io/ADA) !
 
