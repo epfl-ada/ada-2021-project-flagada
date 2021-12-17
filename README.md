@@ -13,11 +13,11 @@ It is no surprise to anyone reading this that climate change has been a topic of
 
 ## Methods
 
-The first task we need to tackle is to extract quotes that are related to climate change. For this we established a list of words related to this subject and filtered out the quotes that did not contain any of those words. This method seems sufficient during our testing and was much more efficient than using a pre-trained classifier.
+The first task we needed to tackle was to extract quotes that were related to climate change. For this we established a list of expressions related to this subject and filtered out the quotes that did not contain any of those expressions. This method seemed sufficient during our testing and was much more efficient than using a pre-trained classifier.
 
-We will also expand the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians (maybe focused on the USA for parties consistency). During our testing we also performed sentiment analysis, using a pre-trained model shipped with `nltk`, this might become useful to answer questions about how different people adress the climate issue.
+We also expanded the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians. In a similar fashion, we studied other attributes like gender, occupation or nationnality.  
 
-Once we have constructed this dataset, we will want to visualize the frequency of quotes regarding the subject and see if any peaks are detectable.
+We performed sentiment analysis aswell, using a pre-trained model shipped with `nltk`. This allowed us to study the sentiment our different events through the quotes.
 
 ## Timeline
 
