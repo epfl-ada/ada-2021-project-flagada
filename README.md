@@ -6,10 +6,10 @@ It is no surprise to anyone reading this that climate change has been a topic of
 
 ## Research questions
 
-* Can the number of quotes about climate change be linked to particular events only by using keywords?
-* Can we identify the nature of the event according to the content of the quotes on a given day?
-* What kind of event is the most impactful ?
-* Optional : How different political parties handle these events (using sentiment analysis)
+* Who is talking about climate change ?
+* Do we observe seasonality ?
+* What do these quotes tell us about politicians and climate ?
+* And what about natural events ?
 
 ## Methods
 
@@ -17,9 +17,7 @@ The first task we need to tackle is to extract quotes that are related to climat
 
 We will also expand the dataset to add information about the speakers (using Wikidata), for instance, their political party, if they are politicians (maybe focused on the USA for parties consistency). During our testing we also performed sentiment analysis, using a pre-trained model shipped with `nltk`, this might become useful to answer questions about how different people adress the climate issue.
 
-Once we have constructed this dataset, we will want to visualize the frequency of quotes regarding the subject and see if any peaks are detectable. To detect the peaks we will implement a method to find local maxima on different scales (weeks or days). One of the main goals of this project is to create a baseline trend for the increase of climate discussions and to identify the outliers to try and link them to particular events. To be able to detect which event corresponds to a particular set of quotes, we also study the most common words cited using `nltk`, by first removing stopwords, punctuation and also words we used to identify quotes related to climate. 
-
-We could try in the future in our datastory blog to incorporate interactiveness to the data. This would be done by allowing the viewer to "click" on peakdays, discover by themselves the most mentioned words and deduce what would be the event.
+Once we have constructed this dataset, we will want to visualize the frequency of quotes regarding the subject and see if any peaks are detectable.
 
 ## Timeline
 
